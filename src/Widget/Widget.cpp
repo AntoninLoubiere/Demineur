@@ -27,6 +27,17 @@ Widget::Widget(Dimention<int> dim, Widget* parent) :
 
 }
 
+Widget::Widget(sf::Vector2<int> pos, Dimention<int> dim, Widget *parent) :
+		m_dimension(dim) {
+	if (parent != 0) {
+		parent->addChild(this);
+
+		m_parent = parent;
+	}
+	
+	setPosition(pos);
+}
+
 Widget::~Widget() {
 	if (m_parent != 0)
 		m_parent->removeChild(this);
@@ -100,11 +111,11 @@ bool Widget::move(int x, int y) {
 	return setPosition(x + m_position.x, y + m_position.y);
 }
 
-sf::Vector2<int> Widget::position() {
+sf::Vector2<int> Widget::position() const {
 	return m_position;
 }
 
-Dimention<int> Widget::dimention() {
+Dimention<int> Widget::dimention() const {
 	return m_dimension;
 }
 } /* namespace Thanto */

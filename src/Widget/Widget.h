@@ -19,6 +19,7 @@ public:
 	Widget(Widget *parent = 0);
 	Widget(sf::RenderWindow);
 	Widget(Dimention<int> dim, Widget *parent = 0);
+	Widget(sf::Vector2<int> pos, Dimention<int> dim, Widget* parent = 0);
 	virtual ~Widget();
 	
 	virtual void draw() = 0;
@@ -29,8 +30,8 @@ public:
 	virtual bool setPosition(sf::Vector2<int>);
 	virtual bool move(int x, int y);
 
-	sf::Vector2<int> position();
-	Dimention<int> dimention();
+	sf::Vector2<int> position() const;
+	Dimention<int> dimention() const;
 
 protected:
 	
