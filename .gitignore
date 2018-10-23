@@ -39,4 +39,6 @@
 # Custom
 
 Debug/
-
+starter.sh
+shutdown.sh
+restart.sh
