@@ -8,6 +8,9 @@
 #ifndef SRC_WIDGET_RECT_H_
 #define SRC_WIDGET_RECT_H_
 
+#include <SFML/Graphics/Rect.hpp>
+
+#include "Dimension.h"
 #include "Widget.h"
 
 namespace ta {
@@ -22,6 +25,11 @@ public:
 
 	virtual void draw() override;
 	virtual void update() override;
+
+private:
+	void init();
+
+	sf::Rect<int> rect;
 };
 
 } /* namespace ta */

@@ -10,14 +10,14 @@
 #include <list>
 
 #include "Dimension.h"
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 namespace ta {
 
 class Widget {
 public:
 	Widget(Widget *parent = 0);
-	Widget(sf::RenderWindow);
+	Widget(sf::RenderWindow*);
 	Widget(Dimention<int> dim, Widget *parent = 0);
 	Widget(sf::Vector2<int> pos, Dimention<int> dim, Widget* parent = 0);
 	virtual ~Widget();
@@ -30,6 +30,7 @@ public:
 	virtual bool setPosition(sf::Vector2<int>);
 	virtual bool move(int x, int y);
 
+	sf::RenderWindow* window();
 	sf::Vector2<int> position() const;
 	Dimention<int> dimention() const;
 
@@ -38,6 +39,8 @@ protected:
 	void addChild(Widget*child);
 	void removeChild(Widget *child);
 	void deleteAllChilds();
+	
+	sf::RenderWindow *m_window;
 	
 	Widget * m_parent;
 	std::list<Widget*> m_listChild;

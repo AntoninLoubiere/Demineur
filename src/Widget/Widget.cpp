@@ -7,6 +7,8 @@
 
 #include "Widget.h"
 
+#include <SFML/System/Vector2.hpp>
+
 namespace ta {
 
 Widget::Widget(Widget* parent) {
@@ -14,6 +16,8 @@ Widget::Widget(Widget* parent) {
 		parent->addChild(this);
 
 		m_parent = parent;
+
+		m_window = parent->window();
 	}
 }
 
@@ -23,6 +27,7 @@ Widget::Widget(Dimention<int> dim, Widget* parent) :
 		parent->addChild(this);
 
 		m_parent = parent;
+		m_window = parent->window();
 	}
 
 }
@@ -36,6 +41,11 @@ Widget::Widget(sf::Vector2<int> pos, Dimention<int> dim, Widget *parent) :
 	}
 	
 	setPosition(pos);
+}
+
+Widget::Widget(sf::RenderWindow *window) :
+		m_parent(0) {
+	m_window = window;
 }
 
 Widget::~Widget() {
@@ -117,5 +127,9 @@ sf::Vector2<int> Widget::position() const {
 
 Dimention<int> Widget::dimention() const {
 	return m_dimension;
+}
+
+sf::RenderWindow* Widget::window() {
+	return m_window;
 }
 } /* namespace Thanto */
