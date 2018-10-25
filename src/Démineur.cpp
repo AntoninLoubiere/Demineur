@@ -8,9 +8,14 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/VideoMode.hpp>
+#include <iterator>
+#include <vector>
+#include <iostream>
 
-#include "Widget/Widget.h"
+#include "Game/Case.h"
+#include "Game/Game.h"
 #include "Widget/Rect.h"
 
 int main() {
@@ -33,6 +38,21 @@ int main() {
 				
 				window.close();
 			}
+		}
+		
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			ta::Game game;
+			
+			for (int x = 0; x < game.numberRow(); x++) {
+				for (int y = 0; y < game.numberColumn(); y++) {
+					if (*(game.getCase(x, y)) == ta::Case::Void) {
+						std::cout << x << ", " << y << ": V ";
+					}
+
+					//std::cout << *game.getCase(x, y);
+				}
+				std::cout << std::endl;
+		}
 		}
 		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
