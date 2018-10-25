@@ -19,6 +19,11 @@ Widget::Widget(Widget* parent) {
 
 		m_window = parent->window();
 	}
+
+	m_dimension.x = 0;
+	m_dimension.y = 0;
+
+	m_position = sf::Vector2f(0, 0);
 }
 
 Widget::Widget(Dimention<int> dim, Widget* parent) :
@@ -30,22 +35,25 @@ Widget::Widget(Dimention<int> dim, Widget* parent) :
 		m_window = parent->window();
 	}
 
+	m_position = sf::Vector2f(0, 0);
+
 }
 
-Widget::Widget(sf::Vector2<int> pos, Dimention<int> dim, Widget *parent) :
-		m_dimension(dim) {
+Widget::Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget *parent) :
+		m_parent(parent) {
 	if (parent != 0) {
 		parent->addChild(this);
-
-		m_parent = parent;
 	}
-	
 	setPosition(pos);
 }
 
 Widget::Widget(sf::RenderWindow *window) :
-		m_parent(0) {
-	m_window = window;
+		m_window(window), m_parent(0) {
+
+	m_dimension.x = INT16_MAX;
+	m_dimension.y = INT16_MAX;
+
+	m_position = sf::Vector2f(0, 0);
 }
 
 Widget::~Widget() {
@@ -81,11 +89,35 @@ void Widget::deleteAllChilds() {
 	
 }
 
-bool Widget::setPosition(int x, int y) {
-	return setPosition(sf::Vector2i(x, y));
+void Widget::draw() {
+
 }
 
-bool Widget::setPosition(sf::Vector2<int> pos) {
+void Widget::update() {
+
+}
+
+void Widget::drawAllChild() {
+	draw();
+
+	for (Widget* currentWidget : m_listChild) {
+		currentWidget->drawAllChild();
+	}
+}
+
+void Widget::updateAllChild() {
+	update();
+
+	for (Widget* currentWidget : m_listChild) {
+		currentWidget->updateAllChild();
+	}
+}
+
+bool Widget::setPosition(float x, float y) {
+	return setPosition(sf::Vector2f(x, y));
+}
+
+bool Widget::setPosition(sf::Vector2<float> pos) {
 	bool returnBool = true;
 	
 	m_position = pos;
@@ -109,7 +141,7 @@ bool Widget::setPosition(sf::Vector2<int> pos) {
 		} else if (pos.y + m_dimension.y
 				> m_parent->position().y + m_parent->dimention().y) {
 			returnBool = false;
-			m_position.x = m_parent->m_dimension.x - m_dimension.y
+			m_position.y = m_parent->m_dimension.y - m_dimension.y
 					+ m_parent->position().y;
 		}
 	}
@@ -121,7 +153,20 @@ bool Widget::move(int x, int y) {
 	return setPosition(x + m_position.x, y + m_position.y);
 }
 
-sf::Vector2<int> Widget::position() const {
+void Widget::setDimention(int x, int y) {
+	Dimention<int> dim;
+	
+	dim.x = x;
+	dim.y = y;
+	
+	setDimention(dim);
+}
+
+void Widget::setDimention(Dimention<int> dim) {
+	m_dimension = dim;
+}
+
+sf::Vector2<float> Widget::position() const {
 	return m_position;
 }
 
@@ -129,7 +174,7 @@ Dimention<int> Widget::dimention() const {
 	return m_dimension;
 }
 
-sf::RenderWindow* Widget::window() {
+sf::RenderWindow* Widget::window() const {
 	return m_window;
 }
 } /* namespace Thanto */

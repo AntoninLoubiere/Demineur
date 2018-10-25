@@ -19,19 +19,25 @@ public:
 	Widget(Widget *parent = 0);
 	Widget(sf::RenderWindow*);
 	Widget(Dimention<int> dim, Widget *parent = 0);
-	Widget(sf::Vector2<int> pos, Dimention<int> dim, Widget* parent = 0);
+	Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget* parent = 0);
 	virtual ~Widget();
 	
-	virtual void draw() = 0;
-	virtual void update() = 0;
+	virtual void draw();
+	virtual void update();
+
+	void drawAllChild();
+	void updateAllChild();
 
 	
-	virtual bool setPosition(int x, int y);
-	virtual bool setPosition(sf::Vector2<int>);
+	virtual bool setPosition(float x, float y);
+	virtual bool setPosition(sf::Vector2<float>);
 	virtual bool move(int x, int y);
+	
+	void setDimention(int x, int y);
+	void setDimention(Dimention<int> dim);
 
-	sf::RenderWindow* window();
-	sf::Vector2<int> position() const;
+	sf::RenderWindow* window() const;
+	sf::Vector2<float> position() const;
 	Dimention<int> dimention() const;
 
 protected:
@@ -45,7 +51,7 @@ protected:
 	Widget * m_parent;
 	std::list<Widget*> m_listChild;
 	
-	sf::Vector2<int> m_position;	
+	sf::Vector2<float> m_position;	
 	Dimention<int> m_dimension;
 };
 

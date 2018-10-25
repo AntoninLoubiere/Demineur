@@ -9,6 +9,7 @@
 #define SRC_WIDGET_RECT_H_
 
 #include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 #include "Dimension.h"
 #include "Widget.h"
@@ -19,17 +20,20 @@ class Rect: public Widget {
 public:
 	Rect(Widget *parent = 0);
 	Rect(Dimention<int> dim, Widget *parent = 0);
-	Rect(sf::Vector2<int> pos, Dimention<int> dim, Widget* parent = 0);
+	Rect(sf::Vector2<float> pos, Dimention<int> dim, Widget* parent = 0);
 	
 	virtual ~Rect();
 
+	virtual bool setPosition(float x, float y) override;
+	virtual bool move(int x, int y) override;
+
 	virtual void draw() override;
 	virtual void update() override;
-
+	
 private:
 	void init();
 
-	sf::Rect<int> rect;
+	sf::RectangleShape m_rect;
 };
 
 } /* namespace ta */
