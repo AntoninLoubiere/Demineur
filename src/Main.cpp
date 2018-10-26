@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Démineur.cpp
 // Author      : PyJaC++
-// Version     :
+// Version     : 0.1
 // Copyright   : GNU
 // Description : Hello World in C++, Ansi-style
 //============================================================================
@@ -56,8 +56,6 @@ int main() {
 				for (int y = 0; y < game.numberColumn(); y++) {
 					ta::printCaseEnum(*game.getCase(x, y));
 					std::cout << " ";
-
-					//std::cout << *game.getCase(x, y);
 				}
 				std::cout << std::endl;
 			}

@@ -12,8 +12,13 @@
 
 namespace ta {
 
+enum CaseState {
+
+	Hide, Show, MineHide, MayBe
+};
+
 enum Case {
-	Void, One, Two, Three, Four, Hide, Mine, Maybe
+	Void, One, Two, Three, Four, Mine
 };
 
 void printCaseEnum(Case caseToPrint);

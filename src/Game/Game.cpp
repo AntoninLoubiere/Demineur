@@ -98,9 +98,9 @@ bool Game::placeMine(int x, int y) {
 				break;
 
 			default:
-				std::cout << "Can't add one: " << *listCaseToAdd[i] << "(";
-				printCaseEnum(*listCaseToAdd[i]);
-				std::cout << ")" << std::endl;
+				//std::cout << "Can't add one: " << *listCaseToAdd[i] << "(";
+				//printCaseEnum(*listCaseToAdd[i]);
+				//std::cout << ")" << std::endl;
 				break;
 			}; 
 	}

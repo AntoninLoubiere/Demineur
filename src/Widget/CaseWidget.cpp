@@ -36,7 +36,7 @@ void CaseWidget::loadTexture() {
 	m_caseTexture.setSmooth(true);
 
 	m_caseSprite.setTexture(m_caseTexture);
-	setCaseTexture(Case::Hide);
+	setCaseTexture(CaseState::Hide);
 
 	// 128 10
 	// 128 10
@@ -47,8 +47,26 @@ void CaseWidget::loadTexture() {
 	m_caseSprite.setPosition(m_position);
 }
 
-void CaseWidget::setCaseTexture(Case caseToShow) {
-	switch (caseToShow) {
+void CaseWidget::setCaseTexture(CaseState caseState) {
+	switch (caseState) {
+	case Show:
+		setCaseShowTexture();
+		break;
+		
+	case Hide:
+		m_caseSprite.setTextureRect(sf::IntRect(2 * 128, 1 * 128, 128, 128));
+		break;
+
+	case MayBe: 
+		m_caseSprite.setTextureRect(sf::IntRect(1 * 128, 2 * 128, 128, 128));
+		break;
+
+	case MineHide:
+		m_caseSprite.setTextureRect(sf::IntRect(0 * 128, 2 * 128, 128, 128));
+	}
+}
+void CaseWidget::setCaseShowTexture() {
+	switch (*m_case) {
 	case Void:
 		m_caseSprite.setTextureRect(sf::IntRect(0 * 128, 0 * 128, 128, 128));
 		break;
@@ -68,16 +86,8 @@ void CaseWidget::setCaseTexture(Case caseToShow) {
 	case Four:
 		m_caseSprite.setTextureRect(sf::IntRect(1 * 128, 1 * 128, 128, 128));
 		break;
-
-	case Hide:
-		m_caseSprite.setTextureRect(sf::IntRect(2 * 128, 1 * 128, 128, 128));
-		break;
-
+		
 	case Mine:
-		m_caseSprite.setTextureRect(sf::IntRect(0 * 128, 2 * 128, 128, 128));
-		break;
-
-	case Maybe:
 		m_caseSprite.setTextureRect(sf::IntRect(1 * 128, 2 * 128, 128, 128));
 		break;
 	}

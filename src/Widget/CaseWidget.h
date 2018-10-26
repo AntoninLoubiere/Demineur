@@ -10,7 +10,7 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include <SFML/System/Vector2.hpp>
+#include <SFML/System/Vector2.hpp> 
 
 #include "../Game/Case.h"
 #include "Widget.h"
@@ -29,7 +29,9 @@ public:
 
 private:
 	void loadTexture();
-	void setCaseTexture(Case caseToShow);
+	void setCaseTexture(CaseState caseState);
+	
+	void setCaseShowTexture();
 	
 	Case* m_case;
 

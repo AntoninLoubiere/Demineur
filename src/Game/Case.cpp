@@ -22,15 +22,10 @@ void ta::printCaseEnum(ta::Case caseToPrint) {
 		std::cout << "4";
 		break;
 
-	case Hide:
-		std::cout << "H";
-		break;
 
 	case Mine:
 		std::cout << "M";
 		break;
 
-	case Maybe:
-		std::cout << "?";
 	}
 }
