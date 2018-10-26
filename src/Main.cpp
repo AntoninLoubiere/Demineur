@@ -11,26 +11,34 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/VideoMode.hpp>
 #include <iostream>
-#include <vector>
 
 #include "Game/Case.h"
 #include "Game/Game.h"
-#include "Widget/Rect.h"
+#include "Widget/Widget.h"
+#include "Widget/CaseWidget.h"
+
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "Test");
+	sf::RenderWindow window(sf::VideoMode(800, 800), "Demineur");
 	
 	ta::Widget *windowWidget = new ta::Widget(&window);
-	windowWidget->setDimention(200, 200);
-
-	ta::Rect *rect = new ta::Rect(windowWidget);
+	windowWidget->setDimention(800, 800);
 
 	window.setFramerateLimit(60);
 
-	rect->setPosition(10, 10);
-
 	ta::Game
-	game(16, 30, 99);
+	game(21, 23, 120);
+	
+	// create all caseWidget
+	
+	
+	for (int x = 0; x < game.numberRow(); x++) {
+		for (int y = 0; y < game.numberColumn(); y++) {
+			new ta::CaseWidget(game.getCase(x, y),
+					sf::Vector2f(y * CASE_SIZE, x * CASE_SIZE),
+					windowWidget); // it is auto delet(e
+		}
+	} 
 
 	while (window.isOpen()) {
 		sf::Event event;
