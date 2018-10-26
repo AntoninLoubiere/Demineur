@@ -23,7 +23,7 @@ public:
 	Case* getCase(int x, int y);
 	
 	// getter
-	Case* caseList();	
+	std::vector<std::vector<Case>>* caseList();	
 	int numberRow();
 	int numberColumn();
 	int numberMine();
@@ -33,10 +33,11 @@ private:
 	const int m_numberColumn;
 	const int m_numberMine;
 
+	bool placeMine(int x, int y);
 
 	void generateCaseList();
 
-	Case* m_caseList;
+	std::vector<std::vector<Case>>* m_caseList;
 };
 
 } /* namespace ta */

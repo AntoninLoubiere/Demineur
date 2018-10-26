@@ -11,6 +11,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/VideoMode.hpp>
 #include <iostream>
+#include <vector>
 
 #include "Game/Case.h"
 #include "Game/Game.h"
@@ -28,6 +29,9 @@ int main() {
 
 	rect->setPosition(10, 10);
 
+	ta::Game
+	game(16, 30, 99);
+
 	while (window.isOpen()) {
 		sf::Event event;
 		
@@ -39,13 +43,11 @@ int main() {
 		}
 		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-			ta::Game game;
-			
+						
 			for (int x = 0; x < game.numberRow(); x++) {
 				for (int y = 0; y < game.numberColumn(); y++) {
-					if (*(game.getCase(x, y)) == ta::Case::Void) {
-						std::cout << x << ", " << y << ": V ";
-					}
+					ta::printCaseEnum(*game.getCase(x, y));
+					std::cout << " ";
 
 					//std::cout << *game.getCase(x, y);
 				}
@@ -54,22 +56,6 @@ int main() {
 
 			while (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			}
-		}
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-			rect->move(0, 2);
-		}
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-			rect->move(0, -2);
-		}
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-			rect->move(2, 0);
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-			rect->move(-2, 0);
 		}
 		
 		window.clear();
