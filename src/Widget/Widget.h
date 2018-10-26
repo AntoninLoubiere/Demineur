@@ -7,10 +7,15 @@
 #ifndef WIDGET_H_
 #define WIDGET_H_
 
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Event.hpp>
 #include <list>
 
 #include "Dimension.h"
-#include <SFML/Graphics/RenderWindow.hpp>
+
+namespace sf {
+class RenderWindow;
+} /* namespace sf */
 
 namespace ta {
 
@@ -24,6 +29,8 @@ public:
 	
 	virtual void draw();
 	virtual void update();
+
+	virtual void onClick(const sf::Event::MouseButtonEvent& event);
 
 	void drawAllChild();
 	void updateAllChild();

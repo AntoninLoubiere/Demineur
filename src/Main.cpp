@@ -7,6 +7,7 @@
 //============================================================================
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/VideoMode.hpp>
@@ -14,7 +15,6 @@
 
 #include "Game/Case.h"
 #include "Game/Game.h"
-#include "Widget/Widget.h"
 #include "Widget/CaseWidget.h"
 
 
@@ -27,7 +27,7 @@ int main() {
 	window.setFramerateLimit(60);
 
 	ta::Game
-	game(21, 23, 120);
+	game(21, 23, 95);
 	
 	// create all caseWidget
 	
@@ -47,6 +47,10 @@ int main() {
 			if (event.type == sf::Event::Closed) {
 				
 				window.close();
+			}
+
+			if (event.type == sf::Event::MouseButtonPressed) {
+				windowWidget->onClick(event.mouseButton);
 			}
 		}
 		

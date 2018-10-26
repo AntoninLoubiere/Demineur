@@ -10,7 +10,8 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include <SFML/System/Vector2.hpp> 
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Event.hpp>
 
 #include "../Game/Case.h"
 #include "Widget.h"
@@ -24,8 +25,12 @@ public:
 	CaseWidget(Case *c, sf::Vector2<float> pos, Widget *parent = 0);
 	virtual ~CaseWidget();
 
-	virtual void draw();
-	virtual void update();
+	virtual void draw() override;
+	virtual void update() override;
+
+	virtual void onClick(const sf::Event::MouseButtonEvent& event) override;
+
+	void showCase();
 
 private:
 	void loadTexture();
@@ -34,6 +39,7 @@ private:
 	void setCaseShowTexture();
 	
 	Case* m_case;
+	CaseState m_caseState;
 
 	sf::Texture m_caseTexture;
 	sf::Sprite m_caseSprite;

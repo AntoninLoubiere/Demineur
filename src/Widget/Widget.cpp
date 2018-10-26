@@ -8,6 +8,8 @@
 #include "Widget.h"
 
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Event.hpp>
+#include <cstdint>
 
 namespace ta {
 
@@ -95,6 +97,19 @@ void Widget::draw() {
 
 void Widget::update() {
 
+}
+
+void Widget::onClick(const sf::Event::MouseButtonEvent &event) {
+	if (event.x >= m_position.x && event.x <= m_position.x + m_dimension.x
+			&& event.y >= m_position.y
+			&& event.y <= m_position.y + m_dimension.y)
+	{
+		
+		for (Widget* currentWidget : m_listChild) {
+			currentWidget->onClick(event);
+		}
+		
+	}
 }
 
 void Widget::drawAllChild() {

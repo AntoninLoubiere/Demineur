@@ -9,9 +9,9 @@
 
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Mouse.hpp>
 #include <iostream>
 
-#include "Dimension.h"
 
 namespace ta {
 
@@ -21,6 +21,8 @@ CaseWidget::CaseWidget(Case *c, sf::Vector2<float> pos, Widget *parent) :
 	setPosition(pos);
 	
 	loadTexture();
+
+	m_caseState = CaseState::Hide;
 }
 
 CaseWidget::~CaseWidget() {
@@ -37,9 +39,6 @@ void CaseWidget::loadTexture() {
 
 	m_caseSprite.setTexture(m_caseTexture);
 	setCaseTexture(CaseState::Hide);
-
-	// 128 10
-	// 128 10
 
 	m_caseSprite.setScale(
 			(float) CASE_SIZE / m_caseSprite.getGlobalBounds().width,
@@ -99,6 +98,43 @@ void CaseWidget::draw() {
 
 void CaseWidget::update() {
 
+}
+
+void CaseWidget::onClick(const sf::Event::MouseButtonEvent &event) {
+	if (event.x >= m_position.x
+			&& event.x <= m_position.x + m_dimension.x
+			&& event.y >= m_position.y
+			&& event.y <= m_position.y + m_dimension.y) {
+
+		if (event.button == sf::Mouse::Left && m_caseState == CaseState::Hide) {
+			showCase();
+		}
+
+		if (event.button == sf::Mouse::Right) {
+			switch (m_caseState) {
+			case Hide:
+				m_caseState = CaseState::MineHide;
+				break;
+			case MineHide:
+				m_caseState = CaseState::MayBe;
+				break;
+			case MayBe:
+				m_caseState = CaseState::Hide;
+				break;
+			default:
+				break;
+			} /* sitch */
+
+			setCaseTexture(m_caseState);
+		}
+	}
+
+	this->Widget::onClick(event); // repet click
+}
+
+void CaseWidget::showCase() {
+	m_caseState = CaseState::Show;
+	setCaseShowTexture();
 }
 
 } /* namespace ta */
