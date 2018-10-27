@@ -7,9 +7,9 @@
 
 #include "Widget.h"
 
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Window/Event.hpp>
 #include <cstdint>
+#include <iostream>
+#include <iterator>
 
 namespace ta {
 
@@ -71,7 +71,7 @@ void Widget::addChild(Widget *child) {
 
 void Widget::removeChild(Widget *child) {
 
-	for (std::list<Widget*>::iterator it = m_listChild.begin();
+	for (std::vector<Widget*>::iterator it = m_listChild.begin();
 			it != m_listChild.end(); it++) {
 
 		if (child == *it) {
@@ -85,10 +85,23 @@ void Widget::removeChild(Widget *child) {
 
 void Widget::deleteAllChilds() {
 	
-	for (Widget *currentChild : m_listChild) {
-		delete currentChild;
+	//Widget *toRemove[m_listChild.size()];
+
+	//std::cout << m_listChild.size() << std::endl;
+	
+	//int x = 0;
+	
+	while (m_listChild.size() > 0) {
+		delete m_listChild.at(0);
+
+		//m_listChild.erase(m_listChild.begin());
 	}
 	
+	//x = 0;
+	
+	/*for (unsigned int i = 0; i < m_listChild.size(); i++) {
+		delete toRemove[i];
+	 }*/
 }
 
 void Widget::draw() {

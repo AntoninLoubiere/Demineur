@@ -34,8 +34,8 @@ m_listCaseWidget(m_numberRow,
 }
 
 Game::~Game() {
-	delete m_listCase; // delete all 
 	delete m_windowWidget;
+	delete m_listCase; // delete all 
 	delete m_window;
 }
 

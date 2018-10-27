@@ -50,10 +50,10 @@ private:
 	sf::Texture m_caseTexture;
 	sf::Sprite m_caseSprite;
 
+	ta::Game* m_game;
+
 	int m_x;
 	int m_y;
-
-	ta::Game* m_game;
 };
 
 } /* namespace ta */

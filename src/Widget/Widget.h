@@ -9,7 +9,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
-#include <list>
+#include <vector>
 
 #include "Dimension.h"
 
@@ -47,6 +47,8 @@ public:
 	sf::Vector2<float> position() const;
 	Dimention<int> dimention() const;
 
+	void deleteWidget();
+
 protected:
 	
 	void addChild(Widget*child);
@@ -56,7 +58,7 @@ protected:
 	sf::RenderWindow *m_window;
 	
 	Widget * m_parent;
-	std::list<Widget*> m_listChild;
+	std::vector<Widget*> m_listChild;
 	
 	sf::Vector2<float> m_position;	
 	Dimention<int> m_dimension;
