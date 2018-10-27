@@ -10,6 +10,7 @@
 
 #include <vector>
 
+#include "../Widget/CaseWidget.h"
 #include "Case.h"
 
 namespace ta {
@@ -21,12 +22,19 @@ public:
 	virtual ~Game();
 
 	Case* getCase(int x, int y);
+	ta::CaseWidget* getCaseWidget(int x, int y);
 	
 	// getter
-	std::vector<std::vector<Case>>* caseList();	
+	std::vector<std::vector<Case>>* listCase();
+	std::vector<std::vector<ta::CaseWidget *>> listCaseWidget();
+	
 	int numberRow();
 	int numberColumn();
 	int numberMine();
+
+	void run();
+
+	void loose();
 
 private:
 	const int m_numberRow;
@@ -35,9 +43,17 @@ private:
 
 	bool placeMine(int x, int y);
 
+	void init();
 	void generateCaseList();
 
-	std::vector<std::vector<Case>>* m_caseList;
+	bool m_isInGame;
+	
+	sf::RenderWindow* m_window;
+
+	Widget *m_windowWidget;
+	
+	std::vector<std::vector<Case>>* m_listCase;
+	std::vector<std::vector<ta::CaseWidget *>> m_listCaseWidget;
 };
 
 } /* namespace ta */

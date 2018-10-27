@@ -1,5 +1,7 @@
 #include "Case.h"
 
+#include <iostream>
+
 void ta::printCaseEnum(ta::Case caseToPrint) {
 	switch (caseToPrint) {
 	case Void:

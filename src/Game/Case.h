@@ -8,7 +8,6 @@
 #ifndef SRC_GAME_CASE_H_
 #define SRC_GAME_CASE_H_
 
-#include <iostream>
 
 namespace ta {
 
