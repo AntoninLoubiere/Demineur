@@ -20,7 +20,7 @@ namespace ta {
 CaseWidget::CaseWidget(Case *c, int x, int y, Game * game, Widget *parent) :
 		Widget(parent), m_case(c), m_x(x), m_y(y), m_game(game) {
 	setDimention(CASE_SIZE, CASE_SIZE);
-	setPosition(y * CASE_SIZE, x * CASE_SIZE);
+	setPosition(m_y * CASE_SIZE, m_x * CASE_SIZE + CASE_SIZE);
 	
 	loadTexture();
 
@@ -33,8 +33,8 @@ CaseWidget::~CaseWidget() {
 
 void CaseWidget::loadTexture() {
 	if (!m_caseTexture.loadFromFile(
-			"/home/antonin/git/Démineur/Debug/tiles/cases.png")) {
-		std::cout << "Error can't open tiles/cases.png";
+			"tiles/cases.png")) {
+		std::cout << "Error can't open tiles/cases.png" << std::endl;
 	}
 
 	m_caseTexture.setSmooth(true);

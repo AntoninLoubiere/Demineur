@@ -11,7 +11,7 @@
 
 int main() {
 	ta::Game
-	game(21, 23, 80);
+	game(20, 23, 80);
 	game.run();
 	return 0;
 }
