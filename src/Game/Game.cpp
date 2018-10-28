@@ -42,12 +42,12 @@ Game::~Game() {
 void Game::init() {
 	m_isInGame = true;
 	
-	m_window = new sf::RenderWindow(sf::VideoMode(800, 800), "Demineur");
+	m_window = new sf::RenderWindow(sf::VideoMode(805, 805), "Demineur");
 	
 	m_windowWidget = new Widget(m_window);
 
 	// config window
-	m_windowWidget->setDimention(800, 800);
+	m_windowWidget->setDimention(810, 810);
 	m_window->setFramerateLimit(60);
 	
 	

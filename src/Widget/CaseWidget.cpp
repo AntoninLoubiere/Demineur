@@ -25,13 +25,9 @@ CaseWidget::CaseWidget(Case *c, int x, int y, Game * game, Widget *parent) :
 	loadTexture();
 
 	m_caseState = CaseState::Hide;
-
-	std::cout << "Create: " << m_x << ", " << m_y << std::endl;
 }
 
 CaseWidget::~CaseWidget() {
-	std::cout << "Coretly delete: " << m_x << ", " << m_y << std::endl;
-	
 	this->~Widget();
 }
 

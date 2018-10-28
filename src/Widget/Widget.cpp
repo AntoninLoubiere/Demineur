@@ -83,25 +83,10 @@ void Widget::removeChild(Widget *child) {
 	
 }
 
-void Widget::deleteAllChilds() {
-	
-	//Widget *toRemove[m_listChild.size()];
-
-	//std::cout << m_listChild.size() << std::endl;
-	
-	//int x = 0;
-	
+void Widget::deleteAllChilds() {	
 	while (m_listChild.size() > 0) {
 		delete m_listChild.at(0);
-
-		//m_listChild.erase(m_listChild.begin());
 	}
-	
-	//x = 0;
-	
-	/*for (unsigned int i = 0; i < m_listChild.size(); i++) {
-		delete toRemove[i];
-	 }*/
 }
 
 void Widget::draw() {
